@@ -43,10 +43,23 @@ function ordenarPorFrecuencia(&$frecuencias)
 }
 function mostrarResultado($resultado)
 {
-    echo "<pre>";
-    foreach ($resultado as $palabra => $veces) {
-        echo $palabra . ": " . $veces . "\n";
+    if (empty($resultado)) {
+        echo '<div class="alert alert-warning mt-4 text-center mx-auto" style="max-width: 600px;">
+                No se encontraron palabras válidas en el texto.
+              </div>';
+        return;
     }
-    echo "</pre>";
+
+    echo '<div class="card shadow rounded-4 p-4 mx-auto mt-4" style="max-width: 600px;">';
+    echo '<h4 class="text-center text-success mb-3">Resultados:</h4>';
+    echo '<ul class="list-group">';
+    foreach ($resultado as $palabra => $veces) {
+        echo "<li class='list-group-item d-flex justify-content-between align-items-center'>
+                <span class='text-capitalize'>$palabra</span>
+                <span class='badge bg-primary rounded-pill'>$veces</span>
+              </li>";
+    }
+    echo '</ul>';
+    echo '</div>';
 }
 ?>

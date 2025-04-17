@@ -1,4 +1,5 @@
 # ContadorPalabras
+
 📝 Analizador de Texto
 Aplicación web sencilla desarrollada en PHP que permite al usuario introducir un texto cualquiera y obtener estadísticas sobre las palabras contenidas en él. La herramienta elimina signos de puntuación y stopwords, y trata palabras con mayúsculas y minúsculas como iguales.
 
