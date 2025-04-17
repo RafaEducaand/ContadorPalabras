@@ -41,4 +41,12 @@ function ordenarPorFrecuencia(&$frecuencias)
 {
     arsort($frecuencias);
 }
+function mostrarResultado($resultado)
+{
+    echo "<pre>";
+    foreach ($resultado as $palabra => $veces) {
+        echo $palabra . ": " . $veces . "\n";
+    }
+    echo "</pre>";
+}
 ?>
