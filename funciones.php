@@ -37,4 +37,8 @@ function contarPalabras($palabras)
 
     return $frecuencias;
 }
+function ordenarPorFrecuencia(&$frecuencias)
+{
+    arsort($frecuencias);
+}
 ?>
