@@ -16,8 +16,7 @@ $resultado = analizarTexto($texto);
 mostrarResultado($resultado);
 
 
-// ---------- FUNCIONES ----------
-function mostrarFormulario()
+
 {
     echo '
         <form method="POST">
