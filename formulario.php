@@ -32,11 +32,25 @@ function mostrarFormulario()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de  palabras</title>
+    <title>Contador de palabras</title>
 </head>
-<body>
-    
 
+<body class="bg-primary bg-gradient bg-opacity-25">
+
+<div class="container mt-5">
+  <div class="card shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
+    <h2 class="text-center text-primary fw-bold mb-4">Cuenta Palabras</h2>
+    <form action="index.php" method="post">
+      <div class="mb-3">
+        <label for="contador" class="form-label">Contador</label>
+        <textarea class="form-control" id="contador" name="contador" rows="4" placeholder="Escribe una frase..."></textarea>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" name="enviar">Contar</button>
+      </div>
+    </form>
+  </div>
+</div>
     
 
 </body>
