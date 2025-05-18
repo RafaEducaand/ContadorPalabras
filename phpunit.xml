@@ -12,15 +12,30 @@
          failOnPhpunitDeprecation="true"
          failOnRisky="true"
          failOnWarning="true">
+
     <testsuites>
         <testsuite name="default">
-            <directory>tests</directory>
+            <file>tests/FuncionesTest.php</file>
         </testsuite>
     </testsuites>
 
-    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <coverage processUncoveredFiles="true">
         <include>
-            <directory>src</directory>
+            <file>src/funciones.php</file>
+        </include>
+        <report>
+            <text showUncoveredFiles="true"/>
+            <html outputDirectory="coverage-report"/>
+            <clover outputFile="coverage.xml"/>
+        </report>
+    </coverage>
+
+    <source ignoreIndirectDeprecations="true"
+            restrictNotices="true"
+            restrictWarnings="true">
+        <include>
+            <file>src/funciones.php</file>
         </include>
     </source>
+
 </phpunit>
