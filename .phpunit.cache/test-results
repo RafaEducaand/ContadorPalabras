@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\FuncionesTest::testAsegurarUTF8":5,"Tests\\FuncionesTest::testLimpiarTexto":7,"Tests\\FuncionesTest::testEliminarTildes":7},"times":{"Tests\\FuncionesTest::testAsegurarUTF8":0.004,"Tests\\FuncionesTest::testLimpiarTexto":0.001,"Tests\\FuncionesTest::testEliminarTildes":0.01}}

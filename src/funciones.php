@@ -1,4 +1,5 @@
 <?php
+namespace App;
 // Establecer codificación UTF-8 para la salida y funciones internas
 header('Content-Type: text/html; charset=utf-8');
 mb_internal_encoding('UTF-8');
