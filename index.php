@@ -14,7 +14,7 @@
 <div class="container mt-5">
   <div class="card shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
     <h2 class="text-center text-primary fw-bold mb-4">Cuenta Palabras</h2>
-    <form action="formulario.php" method="post">
+    <form action="index.php" method="post">
       <div class="mb-3">
         <label for="contador" class="form-label">Contador</label>
         <textarea class="form-control" id="contador" name="contador" rows="4" placeholder="Escribe una frase..."></textarea>
