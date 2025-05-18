@@ -1,6 +1,6 @@
 <?php
 // Autoload de Composer
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use function App\analizarTexto;
 use function App\mostrarResultado;
