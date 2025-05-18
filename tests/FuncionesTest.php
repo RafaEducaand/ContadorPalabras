@@ -54,8 +54,8 @@ class FuncionesTest extends TestCase
 
     public function testContarPalabras()
     {
-        file_put_contents(__DIR__ . '/../stopwords.txt', "y\nla\nde");
-        $resultado = contarPalabras(['hola', 'mundo', 'y', 'la', 'mundo', 'de', 'hola']);
+        $rutaStopwords = __DIR__ . '/../src/stopwords.txt'; // ruta absoluta al archivo en src
+        $resultado = contarPalabras(['hola', 'mundo', 'y', 'la', 'mundo', 'de', 'hola'], $rutaStopwords);
         $this->assertEquals(['hola' => 2, 'mundo' => 2], $resultado);
     }
 
@@ -81,32 +81,32 @@ class FuncionesTest extends TestCase
 
     public function testContarPalabrasConArregloVacio()
     {
-        file_put_contents(__DIR__ . '/../stopwords.txt', "y\nla\nde");
-        $resultado = contarPalabras([]);
+        $rutaStopwords = __DIR__ . '/../src/stopwords.txt';
+        $resultado = contarPalabras([], $rutaStopwords);
         $this->assertEquals([], $resultado);
     }
     public function testAsegurarUTF8ConCaracteresEspeciales()
-{
-    $input = chr(0xC3) . chr(0xA1); // 'á' mal codificada
-    $this->assertEquals('á', asegurarUTF8($input));
-}
-public function testLimpiarTextoConNumerosYPuntuacion()
-{
-    $texto = "Texto 123, prueba 456!";
-    $resultado = limpiarTexto($texto);
-    $this->assertEquals('texto 123 prueba 456', $resultado);
-}
-public function testAsegurarUTF8()
-{
-    $mock = $this->getMockBuilder(\App\FuncionesWrapper::class)
-        ->onlyMethods(['asegurarUTF8'])
-        ->getMock();
+    {
+        $input = chr(0xC3) . chr(0xA1); // 'á' mal codificada
+        $this->assertEquals('á', asegurarUTF8($input));
+    }
+    public function testLimpiarTextoConNumerosYPuntuacion()
+    {
+        $texto = "Texto 123, prueba 456!";
+        $resultado = limpiarTexto($texto);
+        $this->assertEquals('texto 123 prueba 456', $resultado);
+    }
+    public function testAsegurarUTF8()
+    {
+        $mock = $this->getMockBuilder(\App\FuncionesWrapper::class)
+            ->onlyMethods(['asegurarUTF8'])
+            ->getMock();
 
-    $mock->expects($this->exactly(2))
-        ->method('asegurarUTF8')
-        ->willReturnOnConsecutiveCalls('hola', '¡hola!');
+        $mock->expects($this->exactly(2))
+            ->method('asegurarUTF8')
+            ->willReturnOnConsecutiveCalls('hola', '¡hola!');
 
-    $this->assertEquals('hola', $mock->asegurarUTF8('hola'));
-    $this->assertEquals('¡hola!', $mock->asegurarUTF8(utf8_decode('¡hola!')));
-}
+        $this->assertEquals('hola', $mock->asegurarUTF8('hola'));
+        $this->assertEquals('¡hola!', $mock->asegurarUTF8(utf8_decode('¡hola!')));
+    }
 }
