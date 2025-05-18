@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747578659">
-  <project timestamp="1747578659">
-    <file name="C:\Users\Jesus\Desktop\trabajoDespliegue\ContadorPalabras\src\funciones.php">
+<coverage generated="1747578989">
+  <project timestamp="1747578989">
+    <file name="C:\Users\Rafa\Documents\DAW\Despliegue\GIT\ContadorPalabras\ContadorPalabras\src\funciones.php">
       <line num="9" type="stmt" count="0"/>
       <line num="10" type="stmt" count="0"/>
       <line num="11" type="stmt" count="0"/>

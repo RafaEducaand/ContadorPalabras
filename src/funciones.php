@@ -27,7 +27,7 @@ function limpiarTexto($texto)
 {
     $texto = mb_strtolower($texto, 'UTF-8');
     $texto = eliminarTildes($texto); // <- Normaliza tildes
-    $texto = preg_replace('/[^\p{L}\s]/u', '', $texto); // Quita puntuación
+    $texto = preg_replace('/[^\p{L}\p{N}\s]/u', '', $texto); // Quita puntuación
     return $texto;
 }
 

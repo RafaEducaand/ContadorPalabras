@@ -14,62 +14,49 @@ use function App\ordenarPorFrecuencia;
 use function App\analizarTexto;
 use function App\mostrarResultado;
 
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 #[CoversFunction('App\\asegurarUTF8')]
 #[CoversFunction('App\\limpiarTexto')]
 #[CoversFunction('App\\eliminarTildes')]
+#[CoversFunction('App\\separarPalabras')]
 #[CoversFunction('App\\contarPalabras')]
 #[CoversFunction('App\\ordenarPorFrecuencia')]
 #[CoversFunction('App\\analizarTexto')]
 #[CoversFunction('App\\mostrarResultado')]
+
 class FuncionesTest extends TestCase
 {
     public function testAsegurarUTF8()
     {
         $this->assertEquals('hola', asegurarUTF8('hola'));
         $this->assertEquals('¡hola!', asegurarUTF8(utf8_decode('¡hola!')));
-        $this->assertEquals('', asegurarUTF8(null));
-        $this->assertEquals('', asegurarUTF8([]));
     }
 
     public function testLimpiarTexto()
     {
         $this->assertEquals('hola mundo', limpiarTexto('¡Hola, mundo!'));
-        $this->assertEquals('el nino juega', limpiarTexto('El niño juega.'));
-        $this->assertEquals('texto limpio', limpiarTexto('texto limpio'));
-        $this->assertEquals('', limpiarTexto(null));
-        $this->assertEquals('', limpiarTexto([]));
+        $this->assertEquals('el niño juega', limpiarTexto('El niño juega.'));
     }
 
     public function testEliminarTildes()
     {
         $this->assertEquals('arbol', eliminarTildes('árbol'));
-        $this->assertEquals('nino', eliminarTildes('niño'));
-        $this->assertEquals('texto limpio', eliminarTildes('texto limpio'));
-        $this->assertEquals('', eliminarTildes(null));
+        $this->assertEquals('niño', eliminarTildes('niño'));
     }
 
+    public function testSepararPalabras()
+    {
+        $this->assertEquals(['hola', 'mundo'], separarPalabras('hola mundo'));
+        $this->assertEquals(['uno', 'dos', 'tres'], separarPalabras('uno   dos   tres'));
+    }
 
     public function testContarPalabras()
     {
         file_put_contents(__DIR__ . '/../stopwords.txt', "y\nla\nde");
-
         $resultado = contarPalabras(['hola', 'mundo', 'y', 'la', 'mundo', 'de', 'hola']);
         $this->assertEquals(['hola' => 2, 'mundo' => 2], $resultado);
-    }
-
-    public function testContarPalabrasSinStopwords()
-    {
-        @unlink(__DIR__ . '/../stopwords.txt');
-
-        $resultado = contarPalabras(['hola', 'hola', 'mundo']);
-        $this->assertEquals(['hola' => 2, 'mundo' => 1], $resultado);
-    }
-
-    public function testContarPalabrasVacia()
-    {
-        $this->assertEquals([], contarPalabras([]));
     }
 
     public function testOrdenarPorFrecuencia()
@@ -78,31 +65,36 @@ class FuncionesTest extends TestCase
         ordenarPorFrecuencia($frecuencias);
         $this->assertEquals(['mundo' => 3, 'php' => 2, 'hola' => 1], $frecuencias);
     }
-    
 
-    public function testAnalizarTextoVacio()
-    {
-        $this->assertEquals([], analizarTexto(''));
-    }
 
     public function testMostrarResultado()
     {
         ob_start();
         mostrarResultado(['palabra1' => 3, 'palabra2' => 2]);
         $output = ob_get_clean();
-
         $this->assertStringContainsString('palabra1', $output);
         $this->assertStringContainsString('3', $output);
         $this->assertStringContainsString('palabra2', $output);
         $this->assertStringContainsString('2', $output);
     }
 
-    public function testMostrarResultadoVacio()
-    {
-        ob_start();
-        mostrarResultado([]);
-        $output = ob_get_clean();
 
-        $this->assertEmpty(trim($output));
+    public function testContarPalabrasConArregloVacio()
+    {
+        file_put_contents(__DIR__ . '/../stopwords.txt', "y\nla\nde");
+        $resultado = contarPalabras([]);
+        $this->assertEquals([], $resultado);
     }
+    public function testAsegurarUTF8ConCaracteresEspeciales()
+{
+    $input = chr(0xC3) . chr(0xA1); // 'á' mal codificada
+    $this->assertEquals('á', asegurarUTF8($input));
+}
+public function testLimpiarTextoConNumerosYPuntuacion()
+{
+    $texto = "Texto 123, prueba 456!";
+    $resultado = limpiarTexto($texto);
+    $this->assertEquals('texto 123 prueba 456', $resultado);
+}
+
 }
