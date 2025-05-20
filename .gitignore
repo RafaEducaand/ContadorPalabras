@@ -1,0 +1,13 @@
+/vendor/
+/composer.phar
+/.idea/
+/.vscode/
+/coverage/
+/.env
+.DS_Store
+node_modules/
+/tests/.DS_Store
+/tests/.idea/
+/tests/.vscode/
+/tests/coverage/
+/phpunit.xml

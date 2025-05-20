@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+// Ejecuta PHPUnit
+echo "Ejecutando tests antes de push...\n";
+exec('vendor\\bin\\phpunit --colors=always', $output, $return_var);
+
+// Imprime la salida de PHPUnit
+foreach ($output as $line) {
+    echo $line . PHP_EOL;
+}
+
+// Si los tests fallan, aborta el push
+if ($return_var !== 0) {
+    echo "\nERROR: Los tests no pasaron. No se puede hacer push.\n";
+    exit(1);
+}
+
+echo "\nTests pasaron correctamente. Push permitido.\n";
+exit(0);
+
