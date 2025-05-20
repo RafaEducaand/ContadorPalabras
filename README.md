@@ -25,11 +25,12 @@ Control de versiones: Git + GitHub
 📂 Estructura del Proyecto
 
 📦 ContadorPalabras
-├── funciones.php           # Funciones principales de análisis de texto
-├── index.php               # Lógica del formulario de entrada de texto
-├── stopwords.txt           # Lista de palabras vacías para filtrar
-├── README.md               # Documentación del proyecto
-└── index.php               # Página principal del formulario
+├── src/
+│   ├── funciones.php           # Funciones principales de análisis de texto
+│   ├── index.php               # Lógica del formulario de entrada de texto
+│   ├── stopwords.txt           # Lista de palabras vacías para filtrar
+├── test/                       # Pruebas del proyecto
+└── README.md                   # Documentación del proyecto
 
 🚀 Despliegue de la Aplicación
 
@@ -52,7 +53,7 @@ cd ContadorPalabras
 
 📁 Paso 2: Configurar los archivos del proyecto
 
-Asegúrate de que los siguientes archivos estén presentes en la raíz del proyecto:
+Asegúrate de que los siguientes archivos estén presentes en la carpeta `src`:
 
 index.php: Página principal del formulario.
 
@@ -64,6 +65,7 @@ stopwords.txt: Lista de palabras vacías para filtrar.
 
 Puedes usar el servidor embebido de PHP para probar localmente:
 
+cd src
 php -S localhost:8000
 
 Luego, abre tu navegador en:
@@ -74,7 +76,7 @@ http://localhost:8000/
 
 Si planeas usar un servidor como Apache para producción:
 
-Mueve los archivos del proyecto a tu directorio de servidor (ej. /var/www/html/).
+Mueve los archivos de la carpeta `src` a tu directorio de servidor (ej. /var/www/html/ContadorPalabras/src).
 
 Ajusta los permisos del directorio si es necesario:
 
